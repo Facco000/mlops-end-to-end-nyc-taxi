@@ -4,6 +4,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 def extract_parquet(path: Path) -> pd.DataFrame:
     """
     Read a Parquet file into a pandas DataFrame.
@@ -22,4 +23,3 @@ def extract_parquet(path: Path) -> pd.DataFrame:
     except Exception as e:
         logger.error(f"Failed to extract data from {path}: {e}")
         raise
-

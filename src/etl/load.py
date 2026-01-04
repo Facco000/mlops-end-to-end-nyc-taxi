@@ -20,4 +20,3 @@ def load_parquet(df: pd.DataFrame, path: Path) -> None:
     except Exception as e:
         logger.error(f"Failed to save data to {path}: {e}")
         raise
-

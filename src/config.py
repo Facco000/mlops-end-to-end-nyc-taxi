@@ -2,24 +2,29 @@ from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field
 
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
     # Project structure
-    PROJECT_ROOT: Path = Field(default_factory=lambda: Path(__file__).resolve().parent.parent)
-    
+    PROJECT_ROOT: Path = Field(
+        default_factory=lambda: Path(__file__).resolve().parent.parent
+    )
+
     # Data Paths
     DATA_DIR: Path = Field(default_factory=lambda: Path("data"))
     RAW_DATA_FILE: str = "yellow_tripdata_2015-01.parquet"
     PROCESSED_DATA_FILE: str = "taxi_ml_2015_01.parquet"
-    
+
     @property
     def RAW_DATA_PATH(self) -> Path:
         return self.PROJECT_ROOT / self.DATA_DIR / "raw" / self.RAW_DATA_FILE
-        
+
     @property
     def PROCESSED_DATA_PATH(self) -> Path:
-        return self.PROJECT_ROOT / self.DATA_DIR / "processed" / self.PROCESSED_DATA_FILE
+        return (
+            self.PROJECT_ROOT / self.DATA_DIR / "processed" / self.PROCESSED_DATA_FILE
+        )
 
     # Model Parameters
     TARGET: str = "trip_duration_seconds"
@@ -36,10 +41,10 @@ class Settings(BaseSettings):
         "dropoff_latitude",
         "dropoff_longitude",
     ]
-    
+
     # MLflow
     MLFLOW_EXPERIMENT_NAME: str = "taxi_trip_duration_xgboost"
-    
+
     # Feast
     FEAST_REPO_PATH: str = "feature_repo/taxi_features"
     FEAST_FEATURES: list[str] = [
@@ -81,10 +86,11 @@ class Settings(BaseSettings):
 
     # Tuning configuration
     TUNING_CONFIG: dict = {
-        "n_iter": 5,           # Reduced from 20 for speed
-        "cv_folds": 2,         # Reduced from 3 for speed
+        "n_iter": 5,  # Reduced from 20 for speed
+        "cv_folds": 2,  # Reduced from 3 for speed
         "random_state": 42,
         "tuning_data_fraction": 0.1,  # Use 10% of data for tuning
     }
+
 
 settings = Settings()

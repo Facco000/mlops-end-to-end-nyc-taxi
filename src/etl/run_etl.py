@@ -6,14 +6,14 @@ from src.config import settings
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 
+
 def main():
     logger.info("Starting ETL pipeline...")
-    
+
     try:
         # Extract
         df_raw = extract(settings.RAW_DATA_PATH)
@@ -26,10 +26,11 @@ def main():
         # Load
         load(df_processed, settings.PROCESSED_DATA_PATH)
         logger.info("ETL pipeline completed successfully.")
-        
+
     except Exception as e:
         logger.error(f"ETL Pipeline failed: {e}")
         raise
+
 
 if __name__ == "__main__":
     main()
