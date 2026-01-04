@@ -1,0 +1,32 @@
+
+D
+$
+__dummy"
+__dummy_idJtaxi_features
+∞Àﬁ ê¢≥‡∞Àﬁ ê¢≥‡
+Y
+9
+trip_idUnique trip identifier"trip_idJtaxi_features
+∞Àﬁ ò®æ‡∞Àﬁ ò®æ‡1"$d10f7cd6-bde1-4e8b-92e3-96b43c6e79c8*‡äÊ ∞é∑é2ê
+Ô
+taxi_trip_featurestaxi_featurestrip_id"
+haversine_m"
+trip_distance"
+fare_amount"
+passenger_count"
+hour"
+day_of_week"
+
+is_weekend"
+pickup_latitude"
+pickup_longitude"
+dropoff_latitude"
+dropoff_longitude:‰pickup_datetimeZig/Users/facco/Documents/Coding/DATA_SCIENCE/mlops-end-to-end-taxi/data/processed/taxi_ml_2015_01.parquetä1feast.infra.offline_stores.file_source.FileSource¢taxi_trip_sourceí‡äÊ ‡Â≥ˆ"‡äÊ ‡Â≥ˆ@b
+trip_id
+∞Àﬁ Äí»‡‡äÊ ‡¨ÑåR»
+≈
+,feast.infra.online_stores.sqlite.SqliteTable"î
+p/Users/facco/Documents/Coding/DATA_SCIENCE/mlops-end-to-end-taxi/feature_repo/taxi_features/data/online_store.db taxi_features_taxi_trip_featuresbÙpickup_datetimeZig/Users/facco/Documents/Coding/DATA_SCIENCE/mlops-end-to-end-taxi/data/processed/taxi_ml_2015_01.parquetä1feast.infra.offline_stores.file_source.FileSource¢taxi_trip_source™taxi_featuresí∞Àﬁ …ı–"∞Àﬁ ®”†‡ä/
+
+taxi_features
+∞Àﬁ †√Ï“∞Àﬁ †√Ï“

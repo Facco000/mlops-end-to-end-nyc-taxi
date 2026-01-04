@@ -1,0 +1,1 @@
+{"train_rows": 9907512, "val_rows": 2476878, "time_seconds": 733.8779978752136, "final_params": {"objective": "reg:squarederror", "max_depth": 8, "learning_rate": 0.05, "subsample": 0.7, "colsample_bytree": 0.8, "min_child_weight": 10, "gamma": 0.5, "tree_method": "hist", "n_jobs": -1, "random_state": 42, "verbosity": 1, "reg_lambda": 1.5, "reg_alpha": 0.1, "n_estimators": 2000}}

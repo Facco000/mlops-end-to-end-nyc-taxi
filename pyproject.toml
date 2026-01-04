@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mlops-end-to-end-taxi"
+version = "0.1.0"
+description = "End-to-End MLOps Pipeline for NYC Taxi Trip Duration"
+authors = [
+  { name = "Marco Facco", email = "marco.facco@example.com" },
+]
+requires-python = ">=3.11"
+dependencies = [
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "xgboost",
+    "mlflow",
+    "feast",
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "pydantic-settings",
+    "pyarrow",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "training*"]

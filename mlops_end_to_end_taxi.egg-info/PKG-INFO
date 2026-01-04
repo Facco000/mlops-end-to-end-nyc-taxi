@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: mlops-end-to-end-taxi
+Version: 0.1.0
+Summary: End-to-End MLOps Pipeline for NYC Taxi Trip Duration
+Author-email: Marco Facco <marco.facco@example.com>
+Requires-Python: >=3.11
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: scikit-learn
+Requires-Dist: xgboost
+Requires-Dist: mlflow
+Requires-Dist: feast
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: pydantic
+Requires-Dist: pydantic-settings
+Requires-Dist: pyarrow

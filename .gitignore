@@ -1,0 +1,26 @@
+# Data
+data/raw/*.parquet
+data/raw/*.csv
+data/processed/*.parquet
+
+# MLflow
+mlruns/
+mlflow.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+# Testing/Linting
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
