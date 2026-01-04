@@ -29,36 +29,24 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install -e .   # installa src come pacchetto
+          pip install -e .
 
-      # 4️⃣ Lint code with flake8
+      # 4️⃣ Lint code with ruff (consistent with Makefile)
       - name: Lint code
         run: |
-          pip install flake8
-          flake8 src/ tests/ --max-line-length=120
+          ruff check src/ training/ tests/
 
       # 5️⃣ Check code formatting with black
       - name: Check formatting
         run: |
-          pip install black
-          black src/ tests/ --check
+          black src/ training/ tests/ --check
 
       # 6️⃣ Run pytest
       - name: Run tests
-        env:
-          PYTHONPATH: src
         run: |
-          pip install pytest
           pytest tests/ --maxfail=1 --disable-warnings -v
 
       # 7️⃣ Sanity check MLflow & Feast
       - name: MLflow & Feast sanity check
-        env:
-          PYTHONPATH: src
         run: |
-          pip install mlflow feast
-          python -c "
-import mlflow
-import feast
-print('MLflow and Feast imports OK')
-"
+          python -c "import mlflow; import feast; print('MLflow and Feast imports OK')"
