@@ -6,7 +6,7 @@ import mlflow.sklearn
 from feast import FeatureStore
 from sklearn.metrics import root_mean_squared_error, mean_absolute_error
 from sklearn.model_selection import RandomizedSearchCV
-from typing import Tuple, Dict, Any, Optional
+from typing import Tuple, Dict, Any
 
 from src.config import settings
 
