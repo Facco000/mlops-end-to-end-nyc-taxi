@@ -1,15 +1,15 @@
-# End-to-End MLOps Pipeline – NYC Taxi Trip Duration
+# End-to-End MLOps Pipeline — NYC Taxi Trip Duration
 
 ## Project Overview
 
-Questo progetto dimostra una **pipeline completa di Machine Learning**, dal caricamento dei dati grezzi fino a componenti pronti per la produzione, seguendo le best practice di MLOps.
+This project demonstrates a **complete Machine Learning pipeline**, from loading raw data to production-ready components, following MLOps best practices.
 
-L'obiettivo è predire la **durata delle corse dei taxi a New York** usando dati storici, con un focus su:
+The goal is to predict **NYC taxi trip duration** using historical data, with a focus on:
 
-- Riproducibilità
-- Qualità dei dati
-- Separazione tra training e serving
-- Design orientato alla produzione
+- Reproducibility
+- Data quality
+- Separation between training and serving
+- Production-oriented design
 
 ---
 
@@ -22,17 +22,17 @@ L'obiettivo è predire la **durata delle corse dei taxi a New York** usando dati
 - **MLflow** (experiment tracking & model registry)
 - **Feast** (feature store)
 - **FastAPI** (model serving)
-- **Docker / docker-compose** (opzionale)
+- **Docker / docker-compose** (optional)
 
 ---
 
 ## Dataset
 
-NYC Taxi Trip Records (open dataset pubblico):  
+NYC Taxi Trip Records (public open dataset):  
 [NYC Taxi Data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
 
-- Sottoinsieme dei **Yellow Taxi 2015** per mantenere gli esperimenti leggeri
-- File principali:
+- Subset of **Yellow Taxi 2015** to keep experiments lightweight
+- Main files:
 
 ```
 data/raw/
@@ -51,8 +51,8 @@ feature_repo/taxi_features/data/
 **Supervised regression**:
 
 - Target: `trip_duration_seconds`  
-- Metriche principali: **RMSE**, **MAE**
-- Ottimizzazione: **Hyperparameter Tuning** (condizionale), **Early Stopping**
+- Main metrics: **RMSE**, **MAE**
+- Optimization: **Hyperparameter Tuning** (conditional), **Early Stopping**
 
 ---
 
@@ -62,11 +62,11 @@ feature_repo/taxi_features/data/
 mlops-end-to-end-taxi/
 │
 ├── data/
-│   ├── raw/                    # dati originali, immutabili
-│   └── processed/              # dati puliti e pronti per ML
+│   ├── raw/                    # original, immutable data
+│   └── processed/              # cleaned and ML-ready data
 │
 ├── notebooks/
-│   └── 01_eda.ipynb           # EDA esplorativa
+│   └── 01_eda.ipynb           # Exploratory Data Analysis
 │
 ├── src/
 │   ├── etl/
@@ -93,8 +93,8 @@ mlops-end-to-end-taxi/
 │   ├── model_training.py      # training logic (XGBoost + Feast)
 │   └── __init__.py
 │
-├── mlruns/                     # MLflow experiments (auto-generato)
-├── notebooks/                  # Notebook di EDA
+├── mlruns/                     # MLflow experiments (auto-generated)
+├── notebooks/                  # EDA notebooks
 ├── requirements.txt
 ├── README.md
 └── .gitignore
@@ -105,27 +105,27 @@ mlops-end-to-end-taxi/
 ## Pipeline Steps
 
 1. **Exploratory Data Analysis (EDA)**  
-   - Analisi preliminare, valori mancanti, distribuzione target, correlazioni
+   - Preliminary analysis, missing values, target distribution, correlations
 
 2. **ETL & Data Cleaning**
-   - Estrazione CSV/Parquet
-   - Trasformazioni: gestione outlier, tipologie, feature temporali
+   - CSV/Parquet extraction
+   - Transformations: outlier handling, data types, temporal features
 
 3. **Feature Engineering**
-   - Calcolo di hour, day_of_week, is_weekend
-   - Creazione di feature geografiche e derivate
+   - Calculation of hour, day_of_week, is_weekend
+   - Creation of geographical and derived features
 
 4. **Feature Store Integration (Feast)**
-   - Organizza e serve le feature in modo coerente tra training e serving
+   - Organizes and serves features consistently between training and serving
 
 5. **Model Training & Optimization (XGBoost + MLflow)**
-   - **Tuning**: Supporto per `RandomizedSearchCV` per ottimizzare gli iperparametri.
-   - **Early Stopping**: Integrazione per prevenire l'overfitting.
-   - **Tracking**: Log di parametri (base e tuned), metriche e modelli in MLflow.
-   - Run esempio:
+   - **Tuning**: Support for `RandomizedSearchCV` to optimize hyperparameters.
+   - **Early Stopping**: Integration to prevent overfitting.
+   - **Tracking**: Logging of parameters (base and tuned), metrics, and models in MLflow.
+   - Example run:
      ```
-     RMSE: 150.22
-     MAE: 51.50
+     RMSE: 148.39
+     MAE: 50.92
      ```
 
 
@@ -156,14 +156,10 @@ flowchart TB
     end
 
     subgraph Serving["🚀 Serving Layer"]
-        I[FastAPI Inference Service]
-        J[Model Registry<br/>MLflow]
-        K[Monitoring<br/>Metrics & Drift]
-        H --> J --> I --> K
+        I[Model Registry<br/>MLflow]
+        H --> I
     end
-
-    %% Shared features between training and serving
-    E -.-> I
+    
 ```
 
 ---
@@ -204,7 +200,7 @@ This runs the XGBoost training pipeline with default (optimized) settings.
 make train-tune
 ```
 
-Runs a `RandomizedSearchCV` phase on a subset of the data (per velocità) per trovare i parametri migliori, poi addestra il modello finale.
+Runs a `RandomizedSearchCV` phase on a subset of the data (for speed) to find the best parameters, then trains the final model.
 
 ### 5. Running Tests
 
@@ -253,35 +249,35 @@ This will:
 
 ## Results
 
-Run finale XGBoost:
+Final XGBoost run:
 
 ```
 RMSE: 148.39
 MAE: 50.92
 ```
 
-Modello loggato in MLflow e riproducibile
+Model logged in MLflow and reproducible
 
-## Visual reports
+## Visual Reports
 
-Ho incluso alcuni grafici chiave e una mappa interattiva nella cartella `reports/`.
+I've included some key charts and an interactive map in the `reports/` folder.
 
-### Figure
+### Figures
 ![Feature importance](reports/figures/feature_importance.png)
-*Figura 1 — Feature importance (XGBoost).*
+*Figure 1 — Feature importance (XGBoost).*
 
 ![Predicted vs Actual](reports/figures/predicted_vs_actual.png)
-*Figura 2 — Predette vs Reali (sample).*
+*Figure 2 — Predicted vs Actual (sample).*
 
 ![Residuals distribution](reports/figures/residuals_distribution.png)
-*Figura 3 — Distribuzione dei residui (Actual - Predicted).*
+*Figure 3 — Residuals distribution (Actual - Predicted).*
 
 ![Heatmap hour/day](reports/figures/heatmap_hour_day.png)
-*Figura 4 — Durata media per ora × giorno della settimana.*
+*Figure 4 — Average duration by hour × day of week.*
 
-### Mappa interattiva
-La mappa delle pickup (sample) è salvata come HTML:
-- `reports/maps/pickup_sample_map.html` (apri nel browser)
+### Interactive Map
+The pickup sample map is saved as HTML:
+- `reports/maps/pickup_sample_map.html` (open in browser)
 
 
 
@@ -289,12 +285,12 @@ La mappa delle pickup (sample) è salvata come HTML:
 
 ## Notes / Next Steps
 
-Pipeline completamente end-to-end e pronta per il portfolio
+Fully end-to-end pipeline ready for portfolio
 
-Miglioramenti futuri:
-- Modelli avanzati (LightGBM, CatBoost, reti neurali)
-- API FastAPI per serving
-- Drift detection e monitoraggio metriche
+Future improvements:
+- Advanced models (LightGBM, CatBoost, neural networks)
+- FastAPI serving API
+- Drift detection and metrics monitoring
 
 ---
 
